@@ -1,0 +1,186 @@
+<html>
+<head>
+<style type="text/css">
+    /*jslint css: true*/
+    body{
+        color: #97DDFF;
+        background-color: #004080;
+    }
+    td.title{
+        color: #1AB5FF;
+    }
+    .message{
+        color: #97DDFF;
+        font-size: 14pt;
+        font-weight: bold;
+    }
+    .lowvoltagegenerator{
+        color: #1AB5FF;
+        font-size: 20pt;
+        font-weight: bold;
+    }
+    #outerdiv {
+        position:absolute;
+        top: 23%;
+        left: 50%;
+        width:36em;
+        height:19em;
+        margin-top: -9em; /*set to a negative number 1/2 of your height*/
+        margin-left: -18em; /*set to a negative number 1/2 of your width*/
+        padding: 20px;
+    }
+    #innerdiv {
+        color: white;
+        border: 1px solid #1AB5FF;
+        padding: 20px;
+        background-color: #00376F;
+        border-radius: 10px;
+    }
+    .btn {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      padding: 4px 12px;
+      margin-bottom: 0;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      color: #333333;
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+      background-color: #f5f5f5;
+      background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+      background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+      background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+      background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+      border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+      border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+      *background-color: #e6e6e6;
+      /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+      filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+      border: 1px solid #bbbbbb;
+      *border: 0;
+      border-bottom-color: #a2a2a2;
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      border-radius: 4px;
+      *margin-left: .3em;
+      -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+      -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+    }
+    .btn:hover,
+    .btn:active,
+    .btn.active,
+    .btn.disabled,
+    .btn[disabled] {
+      color: #333333;
+      background-color: #e6e6e6;
+      *background-color: #d9d9d9;
+    }
+    .btn:active,
+    .btn.active {
+      background-color: #cccccc \9;
+    }
+    .btn:first-child {
+      *margin-left: 0;
+    }
+    .btn:hover {
+      color: #333333;
+      text-decoration: none;
+      background-position: 0 -15px;
+      -webkit-transition: background-position 0.1s linear;
+      -moz-transition: background-position 0.1s linear;
+      -o-transition: background-position 0.1s linear;
+      transition: background-position 0.1s linear;
+    }
+    .btn:focus {
+      outline: thin dotted #333;
+      outline: 5px auto -webkit-focus-ring-color;
+      outline-offset: -2px;
+    }
+    .btn.active,
+    .btn:active {
+      background-image: none;
+      outline: 0;
+      -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+      -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+      box-shadow: inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05);
+    }
+</style>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<div id='outerdiv' align='center'>
+  <span class='lowvoltagegenerator' align="center">
+    <img src='icons/nzbdroneoptions.png' align='absmiddle' />
+  </span>
+  &nbsp;<br>
+  <div id='innerdiv'>
+    <span class="message">~~ <i>Inactive</i> Search Providers ~~</span><br>
+  	(only check the providers you want hidden)
+  	<br>&nbsp;
+      <table>
+  	  <tr>
+  	    <td nowrap>nzb + </td>
+    		<td nowrap>
+    		  <input type="checkbox" id="chkDogNZB" /> <img title="DogNZB" width='24px' height='24px' border='0' align='absmiddle' src='icons/dognzb.png' />
+    		  <input type="checkbox" id="chkNZBsDotOrg" /> <img title="NZBsDotOrg" width='24px' height='24px' border='0' align='absmiddle' src='icons/nzbsdotorg.png' />
+    		  <input type="checkbox" id="chknzb4u" /> <img title="nzb4u" width='24px' height='24px' border='0' align='absmiddle' src='icons/nzb4u.png' />
+    		  <input type="checkbox" id="chkNZBsRus" /> <img title="NZBsRus" width='24px' height='24px' border='0' align='absmiddle' src='icons/nzbsrus.png' />
+    		  <input type="checkbox" id="chkNZBIndex" /> <img title="NZBIndex" width='24px' height='24px' border='0' align='absmiddle' src='icons/nzbindex.png' />
+    		  <input type="checkbox" id="chkNzbFinder" /> <img title="NzbFinder" width='24px' height='24px' border='0' align='absmiddle' src='icons/nzbfinder.png' />
+    		</td>
+  	  </tr>
+  	  <tr>
+  	    <td nowrap>newznab + </td>
+    		<td nowrap>
+    		  <input type="checkbox" id="chkOMGWTFNZBz" /> <img title="OMGWTFNZBs" width='24px' height='24px' border='0' align='absmiddle' src='icons/omg.png' />
+    		  <input type="checkbox" id="chkNzbX" /> <img title="NzbX" width='24px' height='24px' border='0' align='absmiddle' src='icons/nzbx.png' />
+    		  <input type="checkbox" id="chkNZBFactor" /> <img title="NZBFactor" width='24px' height='24px' border='0' align='absmiddle' src='icons/nzbfactor.png' />
+    		  <input type="checkbox" id="chkNewzB" /> <img title="NewzB" width='24px' height='24px' border='0' align='absmiddle' src='icons/newzb.png' />
+    		  <input type="checkbox" id="chkNZBMatrixEU" /> <img title="NZBMatrixEU" width='24px' height='24px' border='0' align='absmiddle' src='icons/nzbmatrix.png' />
+    		  <input type="checkbox" id="chkUsenetCrawler" /> <img title="UsenetCrawler" width='24px' height='24px' border='0' align='absmiddle' src='icons/usenetcrawler.png' />
+    		  <input type="checkbox" id="chkNzbSu" /> <img title="NzbSu" width='24px' height='24px' border='0' align='absmiddle' src='icons/nzbsu.png' />
+    		  <input type="checkbox" id="chkFindNzbsInfo" /> <img title="FindNzbsInfo" width='24px' height='24px' border='0' align='absmiddle' src='icons/findnzbsinfo.png' />
+    		</td>
+  	  </tr>
+  	  <tr>
+  	    <td nowrap>torrent + </td>
+    		<td nowrap>
+    		  <input type="checkbox" id="chkBTDigg" /> <img title="BTDigg" width='24px' height='24px' border='0' align='absmiddle' src='icons/btdigg.png' />
+    		  <input type="checkbox" id="chkNewTorrents" /> <img title="NewTorrents" width='24px' height='24px' border='0' align='absmiddle' src='icons/newtorrents.png' />
+    		  <input type="checkbox" id="chkKickAssTorrents" /> <img title="KickAssTorrents" width='24px' height='24px' border='0' align='absmiddle' src='icons/kickasstorrents.png' />
+    		  <input type="checkbox" id="chkThePirateBay" /> <img title="ThePirateBay" width='24px' height='24px' border='0' align='absmiddle' src='icons/thepiratebay.png' />
+    		  <input type="checkbox" id="chkl337x" /> <img title="133t" width='24px' height='24px' border='0' align='absmiddle' src='icons/1337x.png' />
+    		  <input type="checkbox" id="chkh33t" /> <img title="h33t" width='24px' height='24px' border='0' align='absmiddle' src='icons/h33t.png' />
+    		  <input type="checkbox" id="chkTorrentzEu" /> <img title="TorrentzEu" width='24px' height='24px' border='0' align='absmiddle' src='icons/torrentzeu.png' />
+    		</td>
+  	  </tr>
+  	  <tr>
+  	    <td nowrap>file locker + </td>
+    		<td nowrap>
+    		  <input type="checkbox" id="chkFilesTube"/> <img title="FilesTube" width='24px' height='24px' border='0' align='absmiddle' src='icons/filestube.png' />
+    		</td>
+  	  </tr>
+  	</table>
+    <br />
+  	<button id="save" class="btn">Save Inactive Search Providers</button>
+  	<div id="status"> </div>
+  </div>
+  <br />
+  nzbdronextender@gmail.com 
+  &nbsp;&nbsp;&nbsp;
+  <a href='https://github.com/jparkerweb/NzbDrone_Xtender/wiki' target='github'><img align="absmiddle" src='icons/github.png' /></a><br>
+  &nbsp;<br>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----"><input type="image" src="icons/redbullbutton.png" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"></form>
+
+</div>
+
+</body>
+<script type="text/javascript" src="options.js"></script>
+</html>
