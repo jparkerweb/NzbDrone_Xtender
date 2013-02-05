@@ -1,6 +1,6 @@
 {
   "name": "NZBDrone Xtender",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "manifest_version": 2,
   "description": "NZBDrone Xtender adds links to scene search sites for all of your episodes. Helpful for when NZBDrone can't find it on its own.",
   "icons": { "16": "icon16.png",
@@ -9,7 +9,7 @@
   "options_page": "options.html",
   "content_scripts": [
     {
-      "matches": ["*://*/*eries/*etails*", "*://*/*/*eries/*etails*"],
+      "matches": ["<all_urls>"],
       "js": ["jquery-1.8.3.min.js", "content.js"]
     }
   ],
@@ -39,6 +39,7 @@
     "icons/lowvoltage.png",
     "icons/newtorrents.png",
     "icons/newzb.png",
+    "icons/no.png",
     "icons/nzb4u.png",
     "icons/nzb7.png",
     "icons/nzbclub.png",
@@ -61,10 +62,13 @@
     "icons/privnzb.png",
     "icons/sunxdcc.png",
     "icons/thepiratebay.png",
+    "icons/thetvdb.png",
     "icons/torrentzeu.png",
     "icons/usenetcrawler.png",
     "icons/vcdq.png",
     "icons/xdccfinder.png",
-    "icons/xdccme.png"
+    "icons/xdccme.png",
+    "icons/xem.png",
+    "icons/yes.png"
   ]
 }
