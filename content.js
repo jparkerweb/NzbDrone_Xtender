@@ -1,4 +1,5 @@
 $(function() {
+	var versionNumber = 'v1.0.3';
 	var thisURL = window.location.pathname;
 		thisURL = thisURL.toLowerCase();
 	var thisTitle = document.title;
@@ -22,10 +23,14 @@ $(function() {
 	// === main series page functions === //
 	setTimeout(function() {
 		if (thisTitle.indexOf("nzbdrone") >= 0) {
+			// --- Set Low Voltage Free Text Page Link --- //
+			$("div#menu > ul").append("<li><a target='_blank' title='Low Voltage Generator' href='http://dl.dropbox.com/u/2569529/webpages/low_voltage_generator/lowvoltagegenerator.html'> <img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' style='margin-top: -8px;' /></a></li>");
+
 			// --- add thetvdb show link --- //
 			$("tr[data-series-id]").each(function () {
 				$(this).children("td:first").prepend("<a target='_blank' href='http://thetvdb.com/?tab=series&id=" + $(this).attr("data-series-id") + "'><img title='thetvdb' src='" + iconsPath + "/thetvdb.png'></a> ");
 			});
+			
 			// --- cleanup status column icons --- //
 			$("td.statusColumn>i.icon-play").each(function () {
 				$(this).replaceWith("<img title='continuing' src='" + iconsPath + "/yes.png'>");
@@ -33,15 +38,15 @@ $(function() {
 			$("td.statusColumn>i.icon-stop").each(function () {
 				$(this).replaceWith("<img title='ended' src='" + iconsPath + "/no.png'>");
 			});
+
+			// --- Set Foot version number --- //
+			$("div#footer").append("<span style='font-size:10px; color:#FFFFFF; float:right;'> -- NzbDrone Xtender " + versionNumber + " -- </span>");
 		};
 	}, 100);
 
 	// === series details page functions === //
 	setTimeout(function() {
 		if (thisURL.indexOf("series/detail") >= 0) {
-			// --- Set Low Voltage Free Text Page Link --- //
-			$("div#menu > ul").append("<li><a target='_blank' title='Low Voltage Generator' href='http://dl.dropbox.com/u/2569529/webpages/low_voltage_generator/lowvoltagegenerator.html'> <img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' style='margin-top: -8px;' /></a></li>");
-
 			//loads prefs
 			chrome.storage.sync.get('prefs', function(items) {
 				$("div#footer").append("<input type='hidden' id='chk_DogNZB' value='" + items.prefs.chk_DogNZB + "'>");
