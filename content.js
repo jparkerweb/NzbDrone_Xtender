@@ -1,5 +1,5 @@
 $(function() {
-	var versionNumber = 'v1.0.4';
+	var versionNumber = '-- NzbDrone Xtender v1.0.5 --';
 	var thisURL = window.location.pathname;
 		thisURL = thisURL.toLowerCase();
 	var thisTitle = document.title;
@@ -11,6 +11,35 @@ $(function() {
 	var tSearchStringPlus = '';
 	var tSearchStringX = '';
 	var tSearchStringXPlus = '';
+
+	if (thisURL.indexOf("series/detail") >= 0) {
+		//loads prefs
+		chrome.storage.sync.get('prefs', function(items) {
+			$("body").append("<input type='hidden' id='chk_DogNZB' value='" + items.prefs.chk_DogNZB + "'>");
+			$("body").append("<input type='hidden' id='chk_NZBsDotOrg' value='" + items.prefs.chk_NZBsDotOrg + "'>");
+			$("body").append("<input type='hidden' id='chk_nzb4u' value='" + items.prefs.chk_nzb4u + "'>");
+			$("body").append("<input type='hidden' id='chk_NZBsRus' value='" + items.prefs.chk_NZBsRus + "'>");
+			$("body").append("<input type='hidden' id='chk_NZBIndex' value='" + items.prefs.chk_NZBIndex + "'>");
+			$("body").append("<input type='hidden' id='chk_NzbFinder' value='" + items.prefs.chk_NzbFinder + "'>");
+			$("body").append("<input type='hidden' id='chk_OMGWTFNZBz' value='" + items.prefs.chk_OMGWTFNZBz + "'>");
+			$("body").append("<input type='hidden' id='chk_NzbX' value='" + items.prefs.chk_NzbX + "'>");
+			$("body").append("<input type='hidden' id='chk_NZBFactor' value='" + items.prefs.chk_NZBFactor + "'>");
+			$("body").append("<input type='hidden' id='chk_NewzB' value='" + items.prefs.chk_NewzB + "'>");
+			$("body").append("<input type='hidden' id='chk_NZBMatrixEU' value='" + items.prefs.chk_NZBMatrixEU + "'>");
+			$("body").append("<input type='hidden' id='chk_UsenetCrawler' value='" + items.prefs.chk_UsenetCrawler + "'>");
+			$("body").append("<input type='hidden' id='chk_NzbSu' value='" + items.prefs.chk_NzbSu + "'>");
+			$("body").append("<input type='hidden' id='chk_FindNzbsInfo' value='" + items.prefs.chk_FindNzbsInfo + "'>");
+			$("body").append("<input type='hidden' id='chk_BTDigg' value='" + items.prefs.chk_BTDigg + "'>");
+			$("body").append("<input type='hidden' id='chk_NewTorrents' value='" + items.prefs.chk_NewTorrents + "'>");
+			$("body").append("<input type='hidden' id='chk_KickAssTorrents' value='" + items.prefs.chk_KickAssTorrents + "'>");
+			$("body").append("<input type='hidden' id='chk_ThePirateBay' value='" + items.prefs.chk_ThePirateBay + "'>");
+			$("body").append("<input type='hidden' id='chk_l337x' value='" + items.prefs.chk_l337x + "'>");
+			$("body").append("<input type='hidden' id='chk_h33t' value='" + items.prefs.chk_h33t + "'>");
+			$("body").append("<input type='hidden' id='chk_TorrentzEu' value='" + items.prefs.chk_TorrentzEu + "'>");
+			$("body").append("<input type='hidden' id='chk_FilesTube' value='" + items.prefs.chk_FilesTube + "'>");
+			$("body").append("<input type='hidden' id='chk_MegaNzbX' value='" + items.prefs.chk_MegaNzbX + "'>");
+		});
+	}
 
 	//find/format ShowName
 	var tShow = $("body>div>div#logo>span").text();
@@ -40,41 +69,13 @@ $(function() {
 			});
 
 			// --- Set Foot version number --- //
-			$("div#footer").append("<span style='font-size:10px; color:#FFFFFF; float:right;'> -- NzbDrone Xtender " + versionNumber + " -- </span>");
+			$("div#footer").append("<span style='font-size:10px; color:#FFFFFF; float:right;'> " + versionNumber + " </span>");
 		};
 	}, 100);
 
 	// === series details page functions === //
 	setTimeout(function() {
 		if (thisURL.indexOf("series/detail") >= 0) {
-			//loads prefs
-			chrome.storage.sync.get('prefs', function(items) {
-				$("div#footer").append("<input type='hidden' id='chk_DogNZB' value='" + items.prefs.chk_DogNZB + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_NZBsDotOrg' value='" + items.prefs.chk_NZBsDotOrg + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_nzb4u' value='" + items.prefs.chk_nzb4u + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_NZBsRus' value='" + items.prefs.chk_NZBsRus + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_NZBIndex' value='" + items.prefs.chk_NZBIndex + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_NzbFinder' value='" + items.prefs.chk_NzbFinder + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_OMGWTFNZBz' value='" + items.prefs.chk_OMGWTFNZBz + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_NzbX' value='" + items.prefs.chk_NzbX + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_NZBFactor' value='" + items.prefs.chk_NZBFactor + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_NewzB' value='" + items.prefs.chk_NewzB + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_NZBMatrixEU' value='" + items.prefs.chk_NZBMatrixEU + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_UsenetCrawler' value='" + items.prefs.chk_UsenetCrawler + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_NzbSu' value='" + items.prefs.chk_NzbSu + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_FindNzbsInfo' value='" + items.prefs.chk_FindNzbsInfo + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_BTDigg' value='" + items.prefs.chk_BTDigg + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_NewTorrents' value='" + items.prefs.chk_NewTorrents + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_KickAssTorrents' value='" + items.prefs.chk_KickAssTorrents + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_ThePirateBay' value='" + items.prefs.chk_ThePirateBay + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_l337x' value='" + items.prefs.chk_l337x + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_h33t' value='" + items.prefs.chk_h33t + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_TorrentzEu' value='" + items.prefs.chk_TorrentzEu + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_FilesTube' value='" + items.prefs.chk_FilesTube + "'>");
-				$("div#footer").append("<input type='hidden' id='chk_MegaNzbX' value='" + items.prefs.chk_MegaNzbX + "'>");
-			});
-
-
 
 			//-----SEASON SEARCHES------
 			$("div.seasonSection>h1").each(function (){

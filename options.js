@@ -1,6 +1,3 @@
-function log(){
-}
-
 function saveOptions() {
 	var chk_DogNZB = $("input#chkDogNZB").is(':checked');
 	var chk_NZBsDotOrg = $("input#chkNZBsDotOrg").is(':checked');
