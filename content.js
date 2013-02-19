@@ -1,5 +1,5 @@
 $(function() {
-	var versionNumber = 'v1.0.3';
+	var versionNumber = 'v1.0.4';
 	var thisURL = window.location.pathname;
 		thisURL = thisURL.toLowerCase();
 	var thisTitle = document.title;
@@ -71,6 +71,7 @@ $(function() {
 				$("div#footer").append("<input type='hidden' id='chk_h33t' value='" + items.prefs.chk_h33t + "'>");
 				$("div#footer").append("<input type='hidden' id='chk_TorrentzEu' value='" + items.prefs.chk_TorrentzEu + "'>");
 				$("div#footer").append("<input type='hidden' id='chk_FilesTube' value='" + items.prefs.chk_FilesTube + "'>");
+				$("div#footer").append("<input type='hidden' id='chk_MegaNzbX' value='" + items.prefs.chk_MegaNzbX + "'>");
 			});
 
 
@@ -99,7 +100,8 @@ $(function() {
 
 
 				//Usenet Link
-				var DogNZB,
+				var MegaNzbX,
+					DogNZB,
 					NZBsDotOrg,
 					nzb4u,
 					NZBsRus,
@@ -107,6 +109,8 @@ $(function() {
 					NzbFinder,
 					OMGWTFNZBz,
 					NzbX;
+					MegaNzbX = " <a style='background-color: white;' target='_blank' title='MegaNzbX' href='http://mega.nzbx.co/s?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/mega-nzbx.png' /></a> ";
+					NzbX = " <a style='background-color: white;' target='_blank' title='NzbX' href='https://nzbx.co/s?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbx.png' \/><\/a> ";					
 					DogNZB = " <a style='background-color: white;' target='_blank' title='DogNZB' href='https://dognzb.cr/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/dognzb.png' /></a> ";
 					NZBsDotOrg = " <a style='background-color: white;' target='_blank' title='NZBsDotOrg' href='https://nzbs.org/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbsdotorg.png' /></a> ";
 					nzb4u = " <a style='background-color: white;' target='_blank' title='nzb4u' href='http://nzb4u.me/search?q=" + tSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzb4u.png' \/><\/a> ";
@@ -114,7 +118,6 @@ $(function() {
 					NZBIndex = " <a style='background-color: white;' target='_blank' title='NZBIndex' href='http://www.nzbindex.nl/search/?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbindex.png' \/><\/a> ";
 					NzbFinder = " <a style='background-color: white;' target='_blank' title='NzbFinder' href='https://www.nzbfinder.ws/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbfinder.png' \/><\/a> ";
 					OMGWTFNZBz = " <a style='background-color: white;' target='_blank' title='OMGWTFNZBs' href='http://omgwtfnzbs.org/browse.php?search=" + tSearchStringPlus + "&amp;cat=default&amp;sort=1&amp;type=1'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/omg.png' /></a> ";
-					NzbX = " <a style='background-color: white;' target='_blank' title='NzbX' href='https://nzbx.co/s?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbx.png' \/><\/a> ";
 				
 				//spotweb
 				var NZBFactor;
@@ -153,14 +156,15 @@ $(function() {
 					FilesTube = " <a style='background-color: white;' target='_blank' title='FilesTube' href='http://www.filestube.com/search.html?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/filestube.png' /></a> ";
 				
 				var ShowSearchLinks = '';
-					if($("input#chk_DogNZB").val() !== "true") ShowSearchLinks = ShowSearchLinks + DogNZB;
+					if($("input#chk_MegaNzbX").val() !== "true") ShowSearchLinks = ShowSearchLinks + MegaNzbX;
+					if($("input#chk_NzbX").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbX;
 					if($("input#chk_NZBsDotOrg").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBsDotOrg;
+					if($("input#chk_DogNZB").val() !== "true") ShowSearchLinks = ShowSearchLinks + DogNZB;
 					if($("input#chk_nzb4u").val() !== "true") ShowSearchLinks = ShowSearchLinks + nzb4u;
 					if($("input#chk_NZBsRus").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBsRus;
 					if($("input#chk_NZBIndex").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBIndex;
 					if($("input#chk_NzbFinder").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbFinder;
 					if($("input#chk_OMGWTFNZBz").val() !== "true") ShowSearchLinks = ShowSearchLinks + OMGWTFNZBz;
-					if($("input#chk_NzbX").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbX;
 					if($("input#chk_NZBFactor").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBFactor;
 					if($("input#chk_NewzB").val() !== "true") ShowSearchLinks = ShowSearchLinks + NewzB;
 					if($("input#chk_NZBMatrixEU").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBMatrixEU;
@@ -231,7 +235,8 @@ $(function() {
 				tSearchStringXPlus = tSearchStringX.replace(/ /g, '+');
 				
 				//Usenet Link
-				var DogNZB,
+				var MegaNzbX,
+					DogNZB,
 					NZBsDotOrg,
 					nzb4u,
 					NZBsRus,
@@ -239,6 +244,8 @@ $(function() {
 					NzbFinder,
 					OMGWTFNZBz,
 					NzbX;
+					MegaNzbX = " <a target='_blank' title='MegaNzbX' href='http://mega.nzbx.co/s?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/mega-nzbx.png' /></a> ";
+					NzbX = " <a target='_blank' title='NzbX' href='https://nzbx.co/s?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbx.png' \/><\/a> ";
 					DogNZB = " <a target='_blank' title='DogNZB' href='https://dognzb.cr/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/dognzb.png' /></a> ";
 					NZBsDotOrg = " <a target='_blank' title='NZBsDotOrg' href='https://nzbs.org/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbsdotorg.png' /></a> ";
 					nzb4u = " <a target='_blank' title='nzb4u' href='http://nzb4u.me/search?q=" + tSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzb4u.png' \/><\/a> ";
@@ -246,7 +253,6 @@ $(function() {
 					NZBIndex = " <a target='_blank' title='NZBIndex' href='http://www.nzbindex.nl/search/?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbindex.png' \/><\/a> ";
 					NzbFinder = " <a target='_blank' title='NzbFinder' href='https://www.nzbfinder.ws/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbfinder.png' \/><\/a> ";
 					OMGWTFNZBz = " <a target='_blank' title='OMGWTFNZBs' href='http://omgwtfnzbs.org/browse.php?search=" + tSearchStringPlus + "&amp;cat=default&amp;sort=1&amp;type=1'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/omg.png' width='16' height='16' /></a> ";
-					NzbX = " <a target='_blank' title='NzbX' href='https://nzbx.co/s?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbx.png' \/><\/a> ";
 				
 				//spotweb
 				var NZBFactor;
@@ -285,14 +291,15 @@ $(function() {
 					FilesTube = " <a target='_blank' title='FilesTube' href='http://www.filestube.com/search.html?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/filestube.png' /></a> ";
 
 				var ShowSearchLinks = '';
-					if($("input#chk_DogNZB").val() !== "true") ShowSearchLinks = ShowSearchLinks + DogNZB;
+					if($("input#chk_MegaNzbX").val() !== "true") ShowSearchLinks = ShowSearchLinks + MegaNzbX;
+					if($("input#chk_NzbX").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbX;
 					if($("input#chk_NZBsDotOrg").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBsDotOrg;
+					if($("input#chk_DogNZB").val() !== "true") ShowSearchLinks = ShowSearchLinks + DogNZB;
 					if($("input#chk_nzb4u").val() !== "true") ShowSearchLinks = ShowSearchLinks + nzb4u;
 					if($("input#chk_NZBsRus").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBsRus;
 					if($("input#chk_NZBIndex").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBIndex;
 					if($("input#chk_NzbFinder").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbFinder;
 					if($("input#chk_OMGWTFNZBz").val() !== "true") ShowSearchLinks = ShowSearchLinks + OMGWTFNZBz;
-					if($("input#chk_NzbX").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbX;
 					if($("input#chk_NZBFactor").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBFactor;
 					if($("input#chk_NewzB").val() !== "true") ShowSearchLinks = ShowSearchLinks + NewzB;
 					if($("input#chk_NZBMatrixEU").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBMatrixEU;

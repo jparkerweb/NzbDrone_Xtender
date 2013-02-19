@@ -24,6 +24,7 @@ function saveOptions() {
 	var chk_h33t = $("input#chkh33t").is(':checked');
 	var chk_TorrentzEu = $("input#chkTorrentzEu").is(':checked');
 	var chk_FilesTube = $("input#chkFilesTube").is(':checked');
+	var chk_MegaNzbX = $("input#chkMegaNzbX").is(':checked');
 
     chrome.storage.sync.set({
         prefs: {
@@ -48,7 +49,8 @@ function saveOptions() {
 			chk_l337x: chk_l337x,
 			chk_h33t: chk_h33t,
 			chk_TorrentzEu: chk_TorrentzEu,
-			chk_FilesTube: chk_FilesTube
+			chk_FilesTube: chk_FilesTube,
+			chk_MegaNzbX: chk_MegaNzbX
         }
     });
 
@@ -83,7 +85,8 @@ function loadOptions() {
 			chk_l337x: false,
 			chk_h33t: false,
 			chk_TorrentzEu: false,
-			chk_FilesTube: false
+			chk_FilesTube: false,
+			chk_MegaNzbX: false
         }
     },
     
@@ -110,6 +113,7 @@ function loadOptions() {
 		$("input#chkh33t").prop('checked',storage.prefs.chk_h33t);
 		$("input#chkTorrentzEu").prop('checked',storage.prefs.chk_TorrentzEu);
 		$("input#chkFilesTube").prop('checked',storage.prefs.chk_FilesTube);
+		$("input#chkMegaNzbX").prop('checked',storage.prefs.chk_MegaNzbX);
 	});
 }
 
