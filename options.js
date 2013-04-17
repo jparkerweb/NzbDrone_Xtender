@@ -10,7 +10,6 @@ function saveOptions() {
 	var chk_NZBFactor = $("input#chkNZBFactor").is(':checked');
 	var chk_NewzB = $("input#chkNewzB").is(':checked');
 	var chk_NZBMatrixEU = $("input#chkNZBMatrixEU").is(':checked');
-	var chk_UsenetCrawler = $("input#chkUsenetCrawler").is(':checked');
 	var chk_NzbSu = $("input#chkNzbSu").is(':checked');
 	var chk_FindNzbsInfo = $("input#chkFindNzbsInfo").is(':checked');
 	var chk_BTDigg = $("input#chkBTDigg").is(':checked');
@@ -22,6 +21,7 @@ function saveOptions() {
 	var chk_TorrentzEu = $("input#chkTorrentzEu").is(':checked');
 	var chk_FilesTube = $("input#chkFilesTube").is(':checked');
 	var chk_MegaNzbX = $("input#chkMegaNzbX").is(':checked');
+	var chk_OZNzb = $("input#chkOZNzb").is(':checked');
 
     chrome.storage.sync.set({
         prefs: {
@@ -36,7 +36,6 @@ function saveOptions() {
 			chk_NZBFactor: chk_NZBFactor,
 			chk_NewzB: chk_NewzB,
 			chk_NZBMatrixEU: chk_NZBMatrixEU,
-			chk_UsenetCrawler: chk_UsenetCrawler,
 			chk_NzbSu: chk_NzbSu,
 			chk_FindNzbsInfo: chk_FindNzbsInfo,
 			chk_BTDigg: chk_BTDigg,
@@ -47,7 +46,8 @@ function saveOptions() {
 			chk_h33t: chk_h33t,
 			chk_TorrentzEu: chk_TorrentzEu,
 			chk_FilesTube: chk_FilesTube,
-			chk_MegaNzbX: chk_MegaNzbX
+			chk_MegaNzbX: chk_MegaNzbX,
+			chk_OZNzb: chk_OZNzb
         }
     });
 
@@ -72,7 +72,6 @@ function loadOptions() {
 			chk_NZBFactor: false,
 			chk_NewzB: false,
 			chk_NZBMatrixEU: false,
-			chk_UsenetCrawler: false,
 			chk_NzbSu: false,
 			chk_FindNzbsInfo: false,
 			chk_BTDigg: false,
@@ -83,7 +82,8 @@ function loadOptions() {
 			chk_h33t: false,
 			chk_TorrentzEu: false,
 			chk_FilesTube: false,
-			chk_MegaNzbX: false
+			chk_MegaNzbX: false,
+			chk_OZNzb: false
         }
     },
     
@@ -99,7 +99,6 @@ function loadOptions() {
 		$("input#chkNZBFactor").prop('checked',storage.prefs.chk_NZBFactor);
 		$("input#chkNewzB").prop('checked',storage.prefs.chk_NewzB);
 		$("input#chkNZBMatrixEU").prop('checked',storage.prefs.chk_NZBMatrixEU);
-		$("input#chkUsenetCrawler").prop('checked',storage.prefs.chk_UsenetCrawler);
 		$("input#chkNzbSu").prop('checked',storage.prefs.chk_NzbSu);
 		$("input#chkFindNzbsInfo").prop('checked',storage.prefs.chk_FindNzbsInfo);
 		$("input#chkBTDigg").prop('checked',storage.prefs.chk_BTDigg);
@@ -111,6 +110,7 @@ function loadOptions() {
 		$("input#chkTorrentzEu").prop('checked',storage.prefs.chk_TorrentzEu);
 		$("input#chkFilesTube").prop('checked',storage.prefs.chk_FilesTube);
 		$("input#chkMegaNzbX").prop('checked',storage.prefs.chk_MegaNzbX);
+		$("input#chkOZNzb").prop('checked',storage.prefs.chk_OZNzb);
 	});
 }
 

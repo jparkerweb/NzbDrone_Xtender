@@ -1,5 +1,5 @@
 $(function() {
-	var versionNumber = '-- NzbDrone Xtender v1.0.5 --';
+	var versionNumber = '-- NzbDrone Xtender v1.0.11 --';
 	var thisURL = window.location.pathname;
 		thisURL = thisURL.toLowerCase();
 	var thisTitle = document.title;
@@ -26,7 +26,6 @@ $(function() {
 			$("body").append("<input type='hidden' id='chk_NZBFactor' value='" + items.prefs.chk_NZBFactor + "'>");
 			$("body").append("<input type='hidden' id='chk_NewzB' value='" + items.prefs.chk_NewzB + "'>");
 			$("body").append("<input type='hidden' id='chk_NZBMatrixEU' value='" + items.prefs.chk_NZBMatrixEU + "'>");
-			$("body").append("<input type='hidden' id='chk_UsenetCrawler' value='" + items.prefs.chk_UsenetCrawler + "'>");
 			$("body").append("<input type='hidden' id='chk_NzbSu' value='" + items.prefs.chk_NzbSu + "'>");
 			$("body").append("<input type='hidden' id='chk_FindNzbsInfo' value='" + items.prefs.chk_FindNzbsInfo + "'>");
 			$("body").append("<input type='hidden' id='chk_BTDigg' value='" + items.prefs.chk_BTDigg + "'>");
@@ -38,6 +37,7 @@ $(function() {
 			$("body").append("<input type='hidden' id='chk_TorrentzEu' value='" + items.prefs.chk_TorrentzEu + "'>");
 			$("body").append("<input type='hidden' id='chk_FilesTube' value='" + items.prefs.chk_FilesTube + "'>");
 			$("body").append("<input type='hidden' id='chk_MegaNzbX' value='" + items.prefs.chk_MegaNzbX + "'>");
+			$("body").append("<input type='hidden' id='chk_OZNzb' value='" + items.prefs.chk_OZNzb + "'>");
 		});
 	}
 
@@ -125,14 +125,14 @@ $(function() {
 					NZBFactor = " <a style='background-color: white;' target='_blank' title='NZBFactor' href='http://www.nzbfactor.com/spotweb/?page=index&search[tree]=&sortby=stamp&sortdir=DESC&search[value][]=Titel:%3D:%22" + tSearchStringPlus + "%22'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbfactor.png' \/><\/a> ";
 					
 				//newznab public
-				var NewzB,
+				var OZNzb,
+					NewzB,
 					NZBMatrixEU,
-					UsenetCrawler,
 					NzbSu,
 					FindNzbsInfo;
+					OZNzb = " <a style='background-color: white;' target='_blank' title='OZNzb' href='https://www.oznzb.com/search/" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/oznzb.png' \/><\/a> ";
 					NewzB = " <a style='background-color: white;' target='_blank' title='NewzB' href='https://newzb.net/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/newzb.png' \/><\/a> ";
 					NZBMatrixEU = " <a style='background-color: white;' target='_blank' title='NZBMatrixEU' href='https://www.nzb-matrix.eu/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbmatrix.png' \/><\/a> ";
-					UsenetCrawler = " <a style='background-color: white;' target='_blank' title='UsenetCrawler' href='https://www.usenet-crawler.com/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/usenetcrawler.png' \/><\/a> ";
 					NzbSu = " <a style='background-color: white;' target='_blank' title='NzbSu' href='https://nzb.su/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbsu.png' \/><\/a> ";
 					FindNzbsInfo = " <a style='background-color: white;' target='_blank' title='FindNzbsInfo' href='http://findnzbs.info/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/findnzbsinfo.png' \/><\/a> ";
 
@@ -146,8 +146,8 @@ $(function() {
 					TorrentzEu;
 					BTDigg = " <a style='background-color: white;' target='_blank' title='BTDigg' href='https://btdigg.org/search?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/btdigg.png' /></a> ";
 					NewTorrents = " <a style='background-color: white;' target='_blank' title='NewTorrents' href='http://www.newtorrents.info/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/newtorrents.png' /></a> ";
-					KickAssTorrents = " <a style='background-color: white;' target='_blank' title='KickAssTorrents' href='https://www.kat.ph/usearch/" + tSearchString + "/'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/kickasstorrents.png' /></a> ";		
-					ThePirateBay = " <a style='background-color: white;' target='_blank' title='ThePirateBay' href='http://thepiratebay.org/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/thepiratebay.png' /></a> ";
+					KickAssTorrents = " <a style='background-color: white;' target='_blank' title='KickAssTorrents' href='https://kat.ph/usearch/" + tSearchString + "/'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/kickasstorrents.png' /></a> ";		
+					ThePirateBay = " <a style='background-color: white;' target='_blank' title='ThePirateBay' href='http://thepiratebay.se/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/thepiratebay.png' /></a> ";
 					l337x = " <a style='background-color: white;' target='_blank' title='1337x' href='http://1337x.org/search/" + tSearchStringPlus + "/0/'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/1337x.png' /></a> ";
 					h33t = " <a style='background-color: white;' target='_blank' title='h33t' href='http://h33t.com/search/" + tSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/h33t.png' /></a> ";
 					TorrentzEu = " <a style='background-color: white;' target='_blank' title='TorrentzEu' href='http://torrentz.eu/search?f=" + tSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/torrentzeu.png' /></a> ";
@@ -160,6 +160,7 @@ $(function() {
 					if($("input#chk_MegaNzbX").val() !== "true") ShowSearchLinks = ShowSearchLinks + MegaNzbX;
 					if($("input#chk_NzbX").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbX;
 					if($("input#chk_NZBsDotOrg").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBsDotOrg;
+					if($("input#chk_OZNzb").val() !== "true") ShowSearchLinks = ShowSearchLinks + OZNzb;
 					if($("input#chk_DogNZB").val() !== "true") ShowSearchLinks = ShowSearchLinks + DogNZB;
 					if($("input#chk_nzb4u").val() !== "true") ShowSearchLinks = ShowSearchLinks + nzb4u;
 					if($("input#chk_NZBsRus").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBsRus;
@@ -169,7 +170,6 @@ $(function() {
 					if($("input#chk_NZBFactor").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBFactor;
 					if($("input#chk_NewzB").val() !== "true") ShowSearchLinks = ShowSearchLinks + NewzB;
 					if($("input#chk_NZBMatrixEU").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBMatrixEU;
-					if($("input#chk_UsenetCrawler").val() !== "true") ShowSearchLinks = ShowSearchLinks + UsenetCrawler;
 					if($("input#chk_NzbSu").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbSu;
 					if($("input#chk_FindNzbsInfo").val() !== "true") ShowSearchLinks = ShowSearchLinks + FindNzbsInfo;
 					if($("input#chk_BTDigg").val() !== "true") ShowSearchLinks = ShowSearchLinks + BTDigg;
@@ -260,14 +260,14 @@ $(function() {
 					NZBFactor = " <a target='_blank' title='NZBFactor' href='http://www.nzbfactor.com/spotweb/?page=index&search[tree]=&sortby=stamp&sortdir=DESC&search[value][]=Titel:%3D:%22" + tSearchStringPlus + "%22'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbfactor.png' \/><\/a> ";
 					
 				//newznab public
-				var NewzB,
+				var OZNzb,
+					NewzB,
 					NZBMatrixEU,
-					UsenetCrawler,
 					NzbSu,
 					FindNzbsInfo;
+					OZNzb = " <a target='_blank' title='OZNzb' href='https://www.oznzb.com/search/" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/oznzb.png' \/><\/a> ";
 					NewzB = " <a target='_blank' title='NewzB' href='https://newzb.net/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/newzb.png' \/><\/a> ";
 					NZBMatrixEU = " <a target='_blank' title='NZBMatrixEU' href='https://www.nzb-matrix.eu/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbmatrix.png' \/><\/a> ";
-					UsenetCrawler = " <a target='_blank' title='UsenetCrawler' href='https://www.usenet-crawler.com/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/usenetcrawler.png' \/><\/a> ";
 					NzbSu = " <a target='_blank' title='NzbSu' href='https://nzb.su/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbsu.png' \/><\/a> ";
 					FindNzbsInfo = " <a target='_blank' title='FindNzbsInfo' href='http://findnzbs.info/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/findnzbsinfo.png' \/><\/a> ";
 
@@ -281,8 +281,8 @@ $(function() {
 					TorrentzEu;
 					BTDigg = " <a target='_blank' title='BTDigg' href='https://btdigg.org/search?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/btdigg.png' /></a> ";
 					NewTorrents = " <a target='_blank' title='NewTorrents' href='http://www.newtorrents.info/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/newtorrents.png' /></a> ";
-					KickAssTorrents = " <a target='_blank' title='KickAssTorrents' href='https://www.kat.ph/usearch/" + tSearchString + "/'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/kickasstorrents.png' /></a> ";		
-					ThePirateBay = " <a target='_blank' title='ThePirateBay' href='http://thepiratebay.org/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/thepiratebay.png' /></a> ";
+					KickAssTorrents = " <a target='_blank' title='KickAssTorrents' href='https://kat.ph/usearch/" + tSearchString + "/'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/kickasstorrents.png' /></a> ";		
+					ThePirateBay = " <a target='_blank' title='ThePirateBay' href='http://thepiratebay.se/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/thepiratebay.png' /></a> ";
 					l337x = " <a target='_blank' title='1337x' href='http://1337x.org/search/" + tSearchStringPlus + "/0/'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/1337x.png' /></a> ";
 					h33t = " <a target='_blank' title='h33t' href='http://h33t.com/search/" + tSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/h33t.png' /></a> ";
 					TorrentzEu = " <a target='_blank' title='TorrentzEu' href='http://torrentz.eu/search?f=" + tSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/torrentzeu.png' /></a> ";
@@ -295,6 +295,7 @@ $(function() {
 					if($("input#chk_MegaNzbX").val() !== "true") ShowSearchLinks = ShowSearchLinks + MegaNzbX;
 					if($("input#chk_NzbX").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbX;
 					if($("input#chk_NZBsDotOrg").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBsDotOrg;
+					if($("input#chk_OZNzb").val() !== "true") ShowSearchLinks = ShowSearchLinks + OZNzb;
 					if($("input#chk_DogNZB").val() !== "true") ShowSearchLinks = ShowSearchLinks + DogNZB;
 					if($("input#chk_nzb4u").val() !== "true") ShowSearchLinks = ShowSearchLinks + nzb4u;
 					if($("input#chk_NZBsRus").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBsRus;
@@ -304,7 +305,6 @@ $(function() {
 					if($("input#chk_NZBFactor").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBFactor;
 					if($("input#chk_NewzB").val() !== "true") ShowSearchLinks = ShowSearchLinks + NewzB;
 					if($("input#chk_NZBMatrixEU").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBMatrixEU;
-					if($("input#chk_UsenetCrawler").val() !== "true") ShowSearchLinks = ShowSearchLinks + UsenetCrawler;
 					if($("input#chk_NzbSu").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbSu;
 					if($("input#chk_FindNzbsInfo").val() !== "true") ShowSearchLinks = ShowSearchLinks + FindNzbsInfo;
 					if($("input#chk_BTDigg").val() !== "true") ShowSearchLinks = ShowSearchLinks + BTDigg;
