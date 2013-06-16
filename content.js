@@ -1,5 +1,5 @@
 $(function() {
-	var versionNumber = '-- NzbDrone Xtender v1.0.11 --';
+	var versionNumber = '-- NzbDrone Xtender v1.0.13 --';
 	var thisURL = window.location.pathname;
 		thisURL = thisURL.toLowerCase();
 	var thisTitle = document.title;
@@ -54,6 +54,9 @@ $(function() {
 		if (thisTitle.indexOf("nzbdrone") >= 0) {
 			// --- Set Low Voltage Free Text Page Link --- //
 			$("div#menu > ul").append("<li><a target='_blank' title='Low Voltage Generator' href='http://dl.dropbox.com/u/2569529/webpages/low_voltage_generator/lowvoltagegenerator.html'> <img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' style='margin-top: -8px;' /></a></li>");
+
+			// --- add click js to hide 100% episodes
+			$('th[aria-label="Episodes"]').attr("onClick","$('div.progressbar[data-value=100]').parent().parent().toggle();").css('cursor','pointer');
 
 			// --- add thetvdb show link --- //
 			$("tr[data-series-id]").each(function () {
@@ -146,7 +149,7 @@ $(function() {
 					TorrentzEu;
 					BTDigg = " <a style='background-color: white;' target='_blank' title='BTDigg' href='https://btdigg.org/search?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/btdigg.png' /></a> ";
 					NewTorrents = " <a style='background-color: white;' target='_blank' title='NewTorrents' href='http://www.newtorrents.info/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/newtorrents.png' /></a> ";
-					KickAssTorrents = " <a style='background-color: white;' target='_blank' title='KickAssTorrents' href='https://kat.ph/usearch/" + tSearchString + "/'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/kickasstorrents.png' /></a> ";		
+					KickAssTorrents = " <a style='background-color: white;' target='_blank' title='KickAssTorrents' href='http://kickass.to/usearch/" + tSearchString + "/'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/kickasstorrents.png' /></a> ";		
 					ThePirateBay = " <a style='background-color: white;' target='_blank' title='ThePirateBay' href='http://thepiratebay.se/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/thepiratebay.png' /></a> ";
 					l337x = " <a style='background-color: white;' target='_blank' title='1337x' href='http://1337x.org/search/" + tSearchStringPlus + "/0/'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/1337x.png' /></a> ";
 					h33t = " <a style='background-color: white;' target='_blank' title='h33t' href='http://h33t.com/search/" + tSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/h33t.png' /></a> ";
@@ -281,7 +284,7 @@ $(function() {
 					TorrentzEu;
 					BTDigg = " <a target='_blank' title='BTDigg' href='https://btdigg.org/search?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/btdigg.png' /></a> ";
 					NewTorrents = " <a target='_blank' title='NewTorrents' href='http://www.newtorrents.info/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/newtorrents.png' /></a> ";
-					KickAssTorrents = " <a target='_blank' title='KickAssTorrents' href='https://kat.ph/usearch/" + tSearchString + "/'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/kickasstorrents.png' /></a> ";		
+					KickAssTorrents = " <a target='_blank' title='KickAssTorrents' href='http://kickass.to/usearch/" + tSearchString + "/'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/kickasstorrents.png' /></a> ";		
 					ThePirateBay = " <a target='_blank' title='ThePirateBay' href='http://thepiratebay.se/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/thepiratebay.png' /></a> ";
 					l337x = " <a target='_blank' title='1337x' href='http://1337x.org/search/" + tSearchStringPlus + "/0/'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/1337x.png' /></a> ";
 					h33t = " <a target='_blank' title='h33t' href='http://h33t.com/search/" + tSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/h33t.png' /></a> ";
