@@ -1,5 +1,5 @@
 $(function() {
-	var versionNumber = '-- NzbDrone Xtender v1.0.13 --';
+	var versionNumber = '-- NzbDrone Xtender v1.0.14 --';
 	var thisURL = window.location.pathname;
 		thisURL = thisURL.toLowerCase();
 	var thisTitle = document.title;
@@ -113,7 +113,7 @@ $(function() {
 					NzbFinder,
 					OMGWTFNZBz,
 					NzbX;
-					MegaNzbX = " <a style='background-color: white;' target='_blank' title='MegaNzbX' href='http://mega.nzbx.co/s?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/mega-nzbx.png' /></a> ";
+					MegaNzbX = " <a style='background-color: white;' target='_blank' title='MegaNzbX' href='http://mega.orangered.me/s?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/mega-nzbx.png' /></a> ";
 					NzbX = " <a style='background-color: white;' target='_blank' title='NzbX' href='https://nzbx.co/s?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbx.png' \/><\/a> ";					
 					DogNZB = " <a style='background-color: white;' target='_blank' title='DogNZB' href='https://dognzb.cr/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/dognzb.png' /></a> ";
 					NZBsDotOrg = " <a style='background-color: white;' target='_blank' title='NZBsDotOrg' href='https://nzbs.org/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbsdotorg.png' /></a> ";
@@ -248,7 +248,7 @@ $(function() {
 					NzbFinder,
 					OMGWTFNZBz,
 					NzbX;
-					MegaNzbX = " <a target='_blank' title='MegaNzbX' href='http://mega.nzbx.co/s?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/mega-nzbx.png' /></a> ";
+					MegaNzbX = " <a target='_blank' title='MegaNzbX' href='http://mega.orangered.me/s?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/mega-nzbx.png' /></a> ";
 					NzbX = " <a target='_blank' title='NzbX' href='https://nzbx.co/s?q=" + tSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbx.png' \/><\/a> ";
 					DogNZB = " <a target='_blank' title='DogNZB' href='https://dognzb.cr/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/dognzb.png' /></a> ";
 					NZBsDotOrg = " <a target='_blank' title='NZBsDotOrg' href='https://nzbs.org/search/" + tSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbsdotorg.png' /></a> ";
