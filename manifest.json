@@ -1,6 +1,6 @@
 {
   "name": "NZBDrone Xtender",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "manifest_version": 2,
   "description": "NZBDrone Xtender adds links to scene search sites for all of your episodes. Helpful for when NZBDrone can't find it on its own.",
   "icons": { "16": "icon16.png",
@@ -10,7 +10,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["jquery-1.9.1.min.js", "content.js"]
+      "js": ["jquery-1.10.2.min.js", "content.js"]
     }
   ],
   "permissions": [
@@ -31,31 +31,25 @@
     "icons/eztv.png",
     "icons/filestube.png",
     "icons/findnzb.png",
-    "icons/findnzbsinfo.png",
     "icons/h33t.png",
+    "icons/fenopy.png",
     "icons/isohunt.png",
     "icons/kickasstorrents.png",
     "icons/listing.txt",
     "icons/lowvoltage.png",
-    "icons/mega-nzbx.png",
     "icons/newtorrents.png",
     "icons/newzb.png",
     "icons/no.png",
-    "icons/nzb4u.png",
     "icons/nzb7.png",
     "icons/nzbclub.png",
-    "icons/nzbfactor.png",
     "icons/nzbfinder.png",
     "icons/nzbgeek.png",
     "icons/nzbindex.png",
-    "icons/nzbmatrix.png",
     "icons/nzbrss.png",
     "icons/nzbs2go.png",
     "icons/nzbscadia.png",
     "icons/nzbsdotorg.png",
-    "icons/nzbsrus.png",
     "icons/nzbsu.png",
-    "icons/nzbx.png",
     "icons/nzbzombie.png",
     "icons/omg.png",
     "icons/orlydb.png",
