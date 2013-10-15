@@ -1,6 +1,6 @@
 window.onload = function() {
 
-	var versionNumber = 'Xtender v2.0.0';
+	var versionNumber = 'Xtender v2.0.3';
 
 	var thisURL = window.location.pathname;
 		thisURL = thisURL.toLowerCase();
@@ -11,6 +11,7 @@ window.onload = function() {
 			$("body").append("<input type='hidden' id='chk_DogNZB' value='" + items.prefs.chk_DogNZB + "'>");
 			$("body").append("<input type='hidden' id='chk_NZBsDotOrg' value='" + items.prefs.chk_NZBsDotOrg + "'>");
 			$("body").append("<input type='hidden' id='chk_NZBIndex' value='" + items.prefs.chk_NZBIndex + "'>");
+			$("body").append("<input type='hidden' id='chk_Binsearch' value='" + items.prefs.chk_Binsearch + "'>");
 			$("body").append("<input type='hidden' id='chk_NzbFinder' value='" + items.prefs.chk_NzbFinder + "'>");
 			$("body").append("<input type='hidden' id='chk_OMGWTFNZBz' value='" + items.prefs.chk_OMGWTFNZBz + "'>");
 			$("body").append("<input type='hidden' id='chk_NewzB' value='" + items.prefs.chk_NewzB + "'>");
@@ -33,23 +34,31 @@ window.onload = function() {
 MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
 var observerMenu = new MutationObserver(function(mutations, observer) {
-	var versionNumber = 'Xtender v2.0.0';
+	var thisTitle = document.title;
+		thisTitle = thisTitle.toLowerCase();
 
-	if($('li#li-low-voltage').length == 0) {
-		var iconsPath = chrome.extension.getURL("icons");
+	//if (thisURL.indexOf("series") >= 0) {
+	if (thisTitle.indexOf("nzbdrone") >= 0) {	
+		var versionNumber = 'Xtender v2.0.3';
+
 		// --- Set Low Voltage Free Text Page Link --- //
-		$("ul#main-menu-region").append("<li id='li-low-voltage'><a target='_blank' style='margin:0; padding:3px;' href='http://dl.dropbox.com/u/2569529/webpages/low_voltage_generator/lowvoltagegenerator.html'><img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' /><br>Low Voltage</a></li>");
-		//$("div#menu > ul").append("<li><a target='_blank' title='Low Voltage Generator' href='http://dl.dropbox.com/u/2569529/webpages/low_voltage_generator/lowvoltagegenerator.html'> <img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' style='margin-top: -8px;' /></a></li>");
+		if($('li#li-low-voltage').length == 0) {
+			var iconsPath = chrome.extension.getURL("icons");			
+			$("ul#main-menu-region").append("<li id='li-low-voltage'><a target='_blank' style='margin:0; padding:3px;' href='http://dl.dropbox.com/u/2569529/webpages/low_voltage_generator/lowvoltagegenerator.html'><img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' /><br>Low Voltage</a></li>");
+
+			// --- Set Foot version number --- //
+			$("div#footer-region").append("<span style='padding-left:15px;'> " + versionNumber + " </span>");
+		}
 
 		// --- add click js to hide 100% episodes
-		$('th:contains("Episodes")').css('cursor','pointer');
-		$('th:contains("Episodes")').click(function () {
-			$('div.progress > div.bar[style=\"width:100%\"]').parent().parent().parent().toggle();
-		});
-
-		
-		// --- Set Foot version number --- //
-		$("div#footer-region").append("<span style='padding-left:15px;'> " + versionNumber + " </span>");
+		if($('#btnXtenderEpisodes').length == 0) {
+			if($("div#x-series > table").length > 0) {
+				$("div#x-series").prepend("<div class='pull-right'><button id='btnXtenderEpisodes' style='border: 0; padding: 3px 7px; border-radius: 50%; background: #C4273C; color: white; cursor: pointer; font-size: 18px; font-weight: 300; width: 32px; height: 30px;'><i class='icon-tasks' style='cursor: pointer;'></i></button></div>");
+				$('#btnXtenderEpisodes').click(function () {
+					$('div.progress > div.bar[style=\"width:100%\"]').parent().parent().parent().toggle();
+				});
+			}
+		}
 	}
 });
 
@@ -68,19 +77,34 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 
 	var thisURL = window.location.pathname;
 		thisURL = thisURL.toLowerCase();
+	var thisTitle = document.title;
+		thisTitle = thisTitle.toLowerCase();
 
-	if (thisURL.indexOf("series") >= 0) {
+	//if (thisURL.indexOf("series") >= 0) {
+	if (thisTitle.indexOf("nzbdrone") >= 0) {
 	    var iconsPath = chrome.extension.getURL("icons");
 
-		var xSeries = (document.title).replace(/(.*) - NzbDrone/, '$1');			
+		var xSeries = '';
+			if( $('a:contains("open series")').length > 0 ) {
+				xSeries = $('a:contains("open series")').attr('href').replace('/series/','');
+			}
+			else {
+				xSeries = (document.title).replace(/(.*) - NzbDrone/, '$1');
+			}
+
+			// -- Series Search Exceptions --
+			xSeries = xSeries.replace('Crime Scene Investigation', '');
+
+			// -- Series Name Formatting --
 			xSeries = xSeries.replace(/ \(([0-9]{4})\)/, '');
 			xSeries = xSeries.replace(' (US)', '');
 			xSeries = xSeries.replace(' (UK)', '');
 			xSeries = xSeries.replace(':', ' ');
 			xSeries = xSeries.replace('&', ' ');
-			xSeries = xSeries.replace('-', ' ');
+			//xSeries = xSeries.replace('-', ' ');
+			xSeries = xSeries.replace(/-*,-*|-+/g, ' ');
 			xSeries = xSeries.replace('\'', '');
-			xSeries = xSeries.replace(/\s{2,}/g, ' ');			
+			xSeries = xSeries.replace(/\s{2,}/g, ' ');	
 
 		var xEpisode = $('div.episode-detail-modal div.modal-header > h3').text();
 			if (xEpisode.match(/[0-9]{2}x/)) {
@@ -91,6 +115,7 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 			xEpisode = xEpisode.replace(/[\n\r]/g, '');
 			xEpisode = xEpisode.replace(/(.*)(s[0-9]{2}e[0-9]{2})/, '$2');
 			xEpisode = xEpisode.replace(/\s{1,}/g, '');
+			xEpisode = xEpisode.replace(/(s[0-9]{2}e[0-9]{2})(.*)/, '$1');
 			
 
 		var xSearchString = xSeries + ' ' + xEpisode;
@@ -100,11 +125,13 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 		var DogNZB,
 			NZBsDotOrg,
 			NZBIndex,
+			Binsearch,
 			NzbFinder,
 			OMGWTFNZBz;
 			DogNZB = " <a target='_blank' class='btn btn-mini' href='https://dognzb.cr/search/" + xSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/dognzb.png' /></a> ";
 			NZBsDotOrg = " <a target='_blank' class='btn btn-mini' href='https://nzbs.org/search/" + xSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbsdotorg.png' /></a> ";
 			NZBIndex = " <a target='_blank' class='btn btn-mini' href='http://www.nzbindex.nl/search/?q=" + xSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbindex.png' \/><\/a> ";
+			Binsearch = " <a target='_blank' class='btn btn-mini' href='http://www.binsearch.info/?q=" + xSearchStringPlus + "&max=100&adv_age=1100'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/binsearch.png' \/><\/a> ";
 			NzbFinder = " <a target='_blank' class='btn btn-mini' href='https://www.nzbfinder.ws/search/" + xSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbfinder.png' \/><\/a> ";
 			OMGWTFNZBz = " <a target='_blank' class='btn btn-mini' href='http://omgwtfnzbs.org/browse.php?search=" + xSearchStringPlus + "&amp;cat=default&amp;sort=1&amp;type=1'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/omg.png' width='16' height='16' /></a> ";
 		
@@ -130,7 +157,7 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 			KickAssTorrents = " <a target='_blank' class='btn btn-mini' href='http://kickass.to/usearch/" + xSearchString + "/'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/kickasstorrents.png' /></a> ";		
 			ThePirateBay = " <a target='_blank' class='btn btn-mini' href='http://thepiratebay.se/search/" + xSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/thepiratebay.png' /></a> ";
 			l337x = " <a target='_blank' class='btn btn-mini' href='http://1337x.org/search/" + xSearchStringPlus + "/0/'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/1337x.png' /></a> ";
-			h33t = " <a target='_blank' class='btn btn-mini' href='http://h33t.com/search/" + xSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/h33t.png' /></a> ";
+			h33t = " <a target='_blank' class='btn btn-mini' href='http://h33tunblock.info/search/" + xSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/h33t.png' /></a> ";
 			Fenopy = " <a target='_blank' class='btn btn-mini' href='http://fenopy.se/?keyword=" + xSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/fenopy.png' /></a> ";
 			TorrentzEu = " <a target='_blank' class='btn btn-mini' href='http://torrentz.eu/search?f=" + xSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/torrentzeu.png' /></a> ";
 		
@@ -143,6 +170,7 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 			if($("input#chk_OZNzb").val() !== "true") ShowSearchLinks = ShowSearchLinks + OZNzb;
 			if($("input#chk_DogNZB").val() !== "true") ShowSearchLinks = ShowSearchLinks + DogNZB;
 			if($("input#chk_NZBIndex").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBIndex;
+			if($("input#chk_Binsearch").val() !== "true") ShowSearchLinks = ShowSearchLinks + Binsearch;
 			if($("input#chk_NzbFinder").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbFinder;
 			if($("input#chk_OMGWTFNZBz").val() !== "true") ShowSearchLinks = ShowSearchLinks + OMGWTFNZBz;
 			if($("input#chk_NewzB").val() !== "true") ShowSearchLinks = ShowSearchLinks + NewzB;
@@ -157,7 +185,7 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 			if($("input#chk_TorrentzEu").val() !== "true") ShowSearchLinks = ShowSearchLinks + TorrentzEu;
 			if($("input#chk_FilesTube").val() !== "true") ShowSearchLinks = ShowSearchLinks + FilesTube;	
 
-	    $('div#episode-search-region').append('<div style="width:600px; margin:0 auto; text-align:center; padding-top:15px;"id="Xtender">' + ShowSearchLinks +'</div>');
+	    $('div#episode-search-region').append('<div style="width:610px; margin:0 auto; text-align:center; padding-top:15px;"id="Xtender">' + ShowSearchLinks +'</div>');
 	}   
 });
 
