@@ -1,6 +1,6 @@
 window.onload = function() {
 
-	var versionNumber = 'Xtender v2.0.3';
+	var versionNumber = "Xtender v2.0.7";
 
 	var thisURL = window.location.pathname;
 		thisURL = thisURL.toLowerCase();
@@ -39,7 +39,7 @@ var observerMenu = new MutationObserver(function(mutations, observer) {
 
 	//if (thisURL.indexOf("series") >= 0) {
 	if (thisTitle.indexOf("nzbdrone") >= 0) {	
-		var versionNumber = 'Xtender v2.0.3';
+		var versionNumber = 'Xtender v2.0.7';
 
 		// --- Set Low Voltage Free Text Page Link --- //
 		if($('li#li-low-voltage').length == 0) {
@@ -157,7 +157,7 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 			KickAssTorrents = " <a target='_blank' class='btn btn-mini' href='http://kickass.to/usearch/" + xSearchString + "/'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/kickasstorrents.png' /></a> ";		
 			ThePirateBay = " <a target='_blank' class='btn btn-mini' href='http://thepiratebay.se/search/" + xSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/thepiratebay.png' /></a> ";
 			l337x = " <a target='_blank' class='btn btn-mini' href='http://1337x.org/search/" + xSearchStringPlus + "/0/'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/1337x.png' /></a> ";
-			h33t = " <a target='_blank' class='btn btn-mini' href='http://h33tunblock.info/search/" + xSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/h33t.png' /></a> ";
+			h33t = " <a target='_blank' class='btn btn-mini' href='http://h33t.to/search/" + xSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/h33t.png' /></a> ";
 			Fenopy = " <a target='_blank' class='btn btn-mini' href='http://fenopy.se/?keyword=" + xSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/fenopy.png' /></a> ";
 			TorrentzEu = " <a target='_blank' class='btn btn-mini' href='http://torrentz.eu/search?f=" + xSearchStringPlus + "'> <img height='16px' width='16px' border='0' align='absmiddle' src='" + iconsPath + "/torrentzeu.png' /></a> ";
 		
