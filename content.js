@@ -1,12 +1,12 @@
+var versionNumber = "Xtender v2.0.9";
+var thisURL = window.location.pathname;
+	thisURL = thisURL.toLowerCase();
+var thisTitle = document.title;
+	thisTitle = thisTitle.toLowerCase();
+
 window.onload = function() {
-
-	var versionNumber = "Xtender v2.0.7";
-
-	var thisURL = window.location.pathname;
-		thisURL = thisURL.toLowerCase();
-	
 	//loads prefs
-	if (thisURL.indexOf("series") >= 0) {
+	if (thisTitle.indexOf("nzbdrone") >= 0) {
 		chrome.storage.sync.get('prefs', function(items) {
 			$("body").append("<input type='hidden' id='chk_DogNZB' value='" + items.prefs.chk_DogNZB + "'>");
 			$("body").append("<input type='hidden' id='chk_NZBsDotOrg' value='" + items.prefs.chk_NZBsDotOrg + "'>");
@@ -30,59 +30,75 @@ window.onload = function() {
 	}
 };
 
+var updateNavbarAndFooter = setInterval(function() {
+	if ($('ul.navbar-nav:not(.navbar-right)').length) {
+		// --- Set Low Voltage Free Text Page Link --- //
+		var iconsPath = chrome.extension.getURL("icons");			
+		$("ul.navbar-nav:not(.navbar-right)").append("<li id='li-low-voltage'><a target='_blank' style='margin:0; padding:3px;' href='http://dl.dropbox.com/u/2569529/webpages/low_voltage_generator/lowvoltagegenerator.html'><img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' /><br>Low Voltage</a></li>");
+		// --- Set Foot version number --- //
+		$("div#footer-region").append("<span style='padding-left:15px;'> " + versionNumber + " </span>");
+		// call add click events to navbar li items
+		addClickEventsToMainNavbarItems();    
+		clearInterval(updateNavbarAndFooter);
+	}
+}, 200); // check every 200ms
+
+var checkToAddToggle100PctSeries = setInterval(function() {
+	if ($("div#x-series > table").length > 0 && $('#btnXtenderEpisodes').length == 0) {
+		addToggle100PctSeries();
+		clearInterval(checkToAddToggle100PctSeries);
+	}
+}, 1000);
+
+function addToggle100PctSeries() {
+	if($("div#x-series > table").length > 0 && $('#btnXtenderEpisodes').length == 0) {
+		$("div#x-series").prepend("<div class='pull-right'><button id='btnXtenderEpisodes' style='border: 0; padding: 3px 7px; border-radius: 50%; background: #C4273C; color: white; cursor: pointer; font-size: 18px; font-weight: 300; width: 32px; height: 30px;'><i class='icon-tasks' style='cursor: pointer;'></i></button></div>");
+		$('#btnXtenderEpisodes').click(function () {
+			$('div.progress-bar.episode-progress[style=\"width:100%\"]').closest("tr").toggle();
+		});
+	}
+}
+
+function addClickEventsToMainNavbarItems() {
+	$("ul.navbar-nav:not(.navbar-right) li").on("click", function() {
+		var checkToAddToggle100PctSeries = setInterval(function() {
+			if ($("div#x-series > table").length) {
+				addToggle100PctSeries();
+				clearInterval(checkToAddToggle100PctSeries);
+			}
+		}, 1000);
+	});
+}
+
 
 MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
 var observerMenu = new MutationObserver(function(mutations, observer) {
-	var thisTitle = document.title;
-		thisTitle = thisTitle.toLowerCase();
-
-	//if (thisURL.indexOf("series") >= 0) {
-	if (thisTitle.indexOf("nzbdrone") >= 0) {	
-		var versionNumber = 'Xtender v2.0.7';
-
-		// --- Set Low Voltage Free Text Page Link --- //
-		if($('li#li-low-voltage').length == 0) {
-			var iconsPath = chrome.extension.getURL("icons");			
-			$("ul#main-menu-region").append("<li id='li-low-voltage'><a target='_blank' style='margin:0; padding:3px;' href='http://dl.dropbox.com/u/2569529/webpages/low_voltage_generator/lowvoltagegenerator.html'><img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' /><br>Low Voltage</a></li>");
-
-			// --- Set Foot version number --- //
-			$("div#footer-region").append("<span style='padding-left:15px;'> " + versionNumber + " </span>");
-		}
-
+	if (thisTitle.indexOf("nzbdrone") >= 0) {
 		// --- add click js to hide 100% episodes
 		if($('#btnXtenderEpisodes').length == 0) {
-			if($("div#x-series > table").length > 0) {
-				$("div#x-series").prepend("<div class='pull-right'><button id='btnXtenderEpisodes' style='border: 0; padding: 3px 7px; border-radius: 50%; background: #C4273C; color: white; cursor: pointer; font-size: 18px; font-weight: 300; width: 32px; height: 30px;'><i class='icon-tasks' style='cursor: pointer;'></i></button></div>");
-				$('#btnXtenderEpisodes').click(function () {
-					$('div.progress > div.bar[style=\"width:100%\"]').parent().parent().parent().toggle();
-				});
-			}
+			addToggle100PctSeries();
 		}
 	}
 });
 
 // define what element should be observed by the observer
 // and what types of mutations trigger the callback
-observerMenu.observe(document.getElementById('main-region'), {
-  //childList: true
-  subtree: true,
-  attributes: true
-  //...
-});
+if (document.getElementById('main-region')){
+	observerMenu.observe(document.getElementById('main-region'), {
+	  //childList: true
+	  subtree: true,
+	  attributes: true
+	  //...
+	});	
+}
 
 var observerModal = new MutationObserver(function(mutations, observer) {
-    // fired when a mutation occurs
-    //console.log(mutations, observer);
+	// fired when a mutation occurs
+	//console.log(mutations, observer);
 
-	var thisURL = window.location.pathname;
-		thisURL = thisURL.toLowerCase();
-	var thisTitle = document.title;
-		thisTitle = thisTitle.toLowerCase();
-
-	//if (thisURL.indexOf("series") >= 0) {
-	if (thisTitle.indexOf("nzbdrone") >= 0) {
-	    var iconsPath = chrome.extension.getURL("icons");
+	if (thisTitle.indexOf("nzbdrone") >= 0 && $('div.episode-detail-modal').length > 0 && $("#Xtender").length == 0) {
+		var iconsPath = chrome.extension.getURL("icons");
 
 		var xSeries = '';
 			if( $('a:contains("open series")').length > 0 ) {
@@ -185,16 +201,17 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 			if($("input#chk_TorrentzEu").val() !== "true") ShowSearchLinks = ShowSearchLinks + TorrentzEu;
 			if($("input#chk_FilesTube").val() !== "true") ShowSearchLinks = ShowSearchLinks + FilesTube;	
 
-	    $('div#episode-search-region').append('<div style="width:610px; margin:0 auto; text-align:center; padding-top:15px;"id="Xtender">' + ShowSearchLinks +'</div>');
+		$('div.episode-detail-modal div.modal-body').append('<div style="width:610px; margin:0 auto; text-align:center; padding-top:15px;"id="Xtender">' + ShowSearchLinks +'</div>');
 	}   
 });
 
 // define what element should be observed by the observer
 // and what types of mutations trigger the callback
-observerModal.observe(document.getElementById('modal-region'), {
-  //childList: true
-  subtree: true,
-  attributes: true
-  //...
-});
-
+if(document.getElementById('modal-region')) {
+	observerModal.observe(document.getElementById('modal-region'), {
+	  //childList: true
+	  subtree: true,
+	  attributes: true
+	  //...
+	});
+}
