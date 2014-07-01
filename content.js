@@ -1,4 +1,4 @@
-var versionNumber = "Xtender v2.0.9";
+var versionNumber = "Xtender v2.0.10";
 var thisURL = window.location.pathname;
 	thisURL = thisURL.toLowerCase();
 var thisTitle = document.title;
@@ -30,17 +30,21 @@ window.onload = function() {
 	}
 };
 
+var intervalsUpdateNavbarAndFooter = 0;
 var updateNavbarAndFooter = setInterval(function() {
-	if ($('ul.navbar-nav:not(.navbar-right)').length) {
+	
+	if ($('.navbar-nzbdrone ul.navbar-nav:not(.navbar-right)').length) {
 		// --- Set Low Voltage Free Text Page Link --- //
 		var iconsPath = chrome.extension.getURL("icons");			
-		$("ul.navbar-nav:not(.navbar-right)").append("<li id='li-low-voltage'><a target='_blank' style='margin:0; padding:3px;' href='http://dl.dropbox.com/u/2569529/webpages/low_voltage_generator/lowvoltagegenerator.html'><img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' /><br>Low Voltage</a></li>");
+		$(".navbar-nzbdrone ul.navbar-nav:not(.navbar-right)").append("<li id='li-low-voltage'><a target='_blank' style='margin:0; padding:3px;' href='http://dl.dropbox.com/u/2569529/webpages/low_voltage_generator/lowvoltagegenerator.html'><img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' /><br>Low Voltage</a></li>");
 		// --- Set Foot version number --- //
 		$("div#footer-region").append("<span style='padding-left:15px;'> " + versionNumber + " </span>");
 		// call add click events to navbar li items
 		addClickEventsToMainNavbarItems();    
 		clearInterval(updateNavbarAndFooter);
 	}
+	intervalsUpdateNavbarAndFooter = intervalsUpdateNavbarAndFooter + 1;
+	if (intervalsUpdateNavbarAndFooter > 20) { clearInterval(updateNavbarAndFooter) }
 }, 200); // check every 200ms
 
 var checkToAddToggle100PctSeries = setInterval(function() {
