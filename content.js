@@ -1,4 +1,4 @@
-var versionNumber = "Xtender v2.0.10";
+var versionNumber = "Xtender v2.0.11";
 var thisURL = window.location.pathname;
 	thisURL = thisURL.toLowerCase();
 var thisTitle = document.title;
@@ -11,6 +11,7 @@ window.onload = function() {
 			$("body").append("<input type='hidden' id='chk_DogNZB' value='" + items.prefs.chk_DogNZB + "'>");
 			$("body").append("<input type='hidden' id='chk_NZBsDotOrg' value='" + items.prefs.chk_NZBsDotOrg + "'>");
 			$("body").append("<input type='hidden' id='chk_NZBIndex' value='" + items.prefs.chk_NZBIndex + "'>");
+			$("body").append("<input type='hidden' id='chk_NZBKing' value='" + items.prefs.chk_NZBKing + "'>");
 			$("body").append("<input type='hidden' id='chk_Binsearch' value='" + items.prefs.chk_Binsearch + "'>");
 			$("body").append("<input type='hidden' id='chk_NzbFinder' value='" + items.prefs.chk_NzbFinder + "'>");
 			$("body").append("<input type='hidden' id='chk_OMGWTFNZBz' value='" + items.prefs.chk_OMGWTFNZBz + "'>");
@@ -145,12 +146,14 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 		var DogNZB,
 			NZBsDotOrg,
 			NZBIndex,
+			NZBKing,
 			Binsearch,
 			NzbFinder,
 			OMGWTFNZBz;
 			DogNZB = " <a target='_blank' class='btn btn-mini' href='https://dognzb.cr/search/" + xSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/dognzb.png' /></a> ";
 			NZBsDotOrg = " <a target='_blank' class='btn btn-mini' href='https://nzbs.org/search/" + xSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbsdotorg.png' /></a> ";
 			NZBIndex = " <a target='_blank' class='btn btn-mini' href='http://www.nzbindex.nl/search/?q=" + xSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbindex.png' \/><\/a> ";
+			NZBKing = " <a target='_blank' class='btn btn-mini' href='http://www.nzbking.com/search/?q=%22" + xSearchStringPlus + "%22'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbking.png' \/><\/a> ";
 			Binsearch = " <a target='_blank' class='btn btn-mini' href='http://www.binsearch.info/?q=" + xSearchStringPlus + "&max=100&adv_age=1100'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/binsearch.png' \/><\/a> ";
 			NzbFinder = " <a target='_blank' class='btn btn-mini' href='https://www.nzbfinder.ws/search/" + xSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbfinder.png' \/><\/a> ";
 			OMGWTFNZBz = " <a target='_blank' class='btn btn-mini' href='http://omgwtfnzbs.org/browse.php?search=" + xSearchStringPlus + "&amp;cat=default&amp;sort=1&amp;type=1'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/omg.png' width='16' height='16' /></a> ";
@@ -190,6 +193,7 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 			if($("input#chk_OZNzb").val() !== "true") ShowSearchLinks = ShowSearchLinks + OZNzb;
 			if($("input#chk_DogNZB").val() !== "true") ShowSearchLinks = ShowSearchLinks + DogNZB;
 			if($("input#chk_NZBIndex").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBIndex;
+			if($("input#chk_NZBKing").val() !== "true") ShowSearchLinks = ShowSearchLinks + NZBKing;
 			if($("input#chk_Binsearch").val() !== "true") ShowSearchLinks = ShowSearchLinks + Binsearch;
 			if($("input#chk_NzbFinder").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbFinder;
 			if($("input#chk_OMGWTFNZBz").val() !== "true") ShowSearchLinks = ShowSearchLinks + OMGWTFNZBz;

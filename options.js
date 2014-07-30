@@ -2,6 +2,7 @@ function saveOptions() {
 	var chk_DogNZB = $("input#chkDogNZB").is(':checked');
 	var chk_NZBsDotOrg = $("input#chkNZBsDotOrg").is(':checked');
 	var chk_NZBIndex = $("input#chkNZBIndex").is(':checked');
+	var chk_NZBKing = $("input#chkNZBKing").is(':checked');
 	var chk_Binsearch = $("input#chkBinsearch").is(':checked');
 	var chk_NzbFinder = $("input#chkNzbFinder").is(':checked');
 	var chk_OMGWTFNZBz = $("input#chkOMGWTFNZBz").is(':checked');
@@ -23,6 +24,7 @@ function saveOptions() {
             chk_DogNZB: chk_DogNZB,
 			chk_NZBsDotOrg: chk_NZBsDotOrg,
 			chk_NZBIndex: chk_NZBIndex,
+			chk_NZBKing: chk_NZBKing,
 			chk_Binsearch: chk_Binsearch,
 			chk_NzbFinder: chk_NzbFinder,
 			chk_OMGWTFNZBz: chk_OMGWTFNZBz,
@@ -54,6 +56,7 @@ function loadOptions() {
             chk_DogNZB: false,
 			chk_NZBsDotOrg: false,
 			chk_NZBIndex: false,
+			chk_NZBKing: false,
 			chk_Binsearch: false,
 			chk_NzbFinder: false,
 			chk_OMGWTFNZBz: false,
@@ -76,6 +79,7 @@ function loadOptions() {
 		$("input#chkDogNZB").prop('checked',storage.prefs.chk_DogNZB);
 		$("input#chkNZBsDotOrg").prop('checked',storage.prefs.chk_NZBsDotOrg);
 		$("input#chkNZBIndex").prop('checked',storage.prefs.chk_NZBIndex);
+		$("input#chkNZBKing").prop('checked',storage.prefs.chk_NZBKing);
 		$("input#chkBinsearch").prop('checked',storage.prefs.chk_Binsearch);
 		$("input#chkNzbFinder").prop('checked',storage.prefs.chk_NzbFinder);
 		$("input#chkOMGWTFNZBz").prop('checked',storage.prefs.chk_OMGWTFNZBz);

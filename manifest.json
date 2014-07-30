@@ -1,6 +1,6 @@
 {
   "name": "NZBDrone Xtender",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "manifest_version": 2,
   "description": "NZBDrone Xtender adds links to scene search sites for all of your episodes. Helpful for when NZBDrone can't find it on its own.",
   "icons": { "16": "icon16.png",
@@ -47,6 +47,7 @@
     "icons/nzbfinder.png",
     "icons/nzbgeek.png",
     "icons/nzbindex.png",
+    "icons/nzbking.png",
     "icons/nzbrss.png",
     "icons/nzbs2go.png",
     "icons/nzbscadia.png",
