@@ -1,4 +1,4 @@
-var versionNumber = "Xtender v2.0.11";
+var versionNumber = "Xtender v2.0.12";
 var thisURL = window.location.pathname;
 	thisURL = thisURL.toLowerCase();
 var thisTitle = document.title;
@@ -110,7 +110,7 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 				xSeries = $('a:contains("open series")').attr('href').replace('/series/','');
 			}
 			else {
-				xSeries = (document.title).replace(/(.*) - NzbDrone/, '$1');
+				xSeries = (document.title).replace(/(.*) - nzbdrone/, '$1');
 			}
 
 			// -- Series Search Exceptions --
