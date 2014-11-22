@@ -1,4 +1,4 @@
-var versionNumber = "Xtender v2.0.12";
+var versionNumber = "Xtender v3.0.0";
 var thisURL = window.location.pathname;
 	thisURL = thisURL.toLowerCase();
 var thisTitle = document.title;
@@ -6,7 +6,7 @@ var thisTitle = document.title;
 
 window.onload = function() {
 	//loads prefs
-	if (thisTitle.indexOf("nzbdrone") >= 0) {
+	if (thisTitle.indexOf("sonarr") >= 0) {
 		chrome.storage.sync.get('prefs', function(items) {
 			$("body").append("<input type='hidden' id='chk_DogNZB' value='" + items.prefs.chk_DogNZB + "'>");
 			$("body").append("<input type='hidden' id='chk_NZBsDotOrg' value='" + items.prefs.chk_NZBsDotOrg + "'>");
@@ -79,7 +79,7 @@ function addClickEventsToMainNavbarItems() {
 MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
 var observerMenu = new MutationObserver(function(mutations, observer) {
-	if (thisTitle.indexOf("nzbdrone") >= 0) {
+	if (thisTitle.indexOf("sonarr") >= 0) {
 		// --- add click js to hide 100% episodes
 		if($('#btnXtenderEpisodes').length == 0) {
 			addToggle100PctSeries();
@@ -102,7 +102,7 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 	// fired when a mutation occurs
 	//console.log(mutations, observer);
 
-	if (thisTitle.indexOf("nzbdrone") >= 0 && $('div.episode-detail-modal').length > 0 && $("#Xtender").length == 0) {
+	if (thisTitle.indexOf("sonarr") >= 0 && $('div.episode-detail-modal').length > 0 && $("#Xtender").length == 0) {
 		var iconsPath = chrome.extension.getURL("icons");
 
 		var xSeries = '';
@@ -110,7 +110,7 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 				xSeries = $('a:contains("open series")').attr('href').replace('/series/','');
 			}
 			else {
-				xSeries = (document.title).replace(/(.*) - nzbdrone/, '$1');
+				xSeries = (document.title).replace(/(.*) - Sonarr/, '$1');
 			}
 
 			// -- Series Search Exceptions --
