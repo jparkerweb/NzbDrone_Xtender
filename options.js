@@ -6,7 +6,6 @@ function saveOptions() {
 	var chk_Binsearch = $("input#chkBinsearch").is(':checked');
 	var chk_NzbFinder = $("input#chkNzbFinder").is(':checked');
 	var chk_OMGWTFNZBz = $("input#chkOMGWTFNZBz").is(':checked');
-	var chk_NewzB = $("input#chkNewzB").is(':checked');
 	var chk_NzbSu = $("input#chkNzbSu").is(':checked');
 	var chk_BTDigg = $("input#chkBTDigg").is(':checked');
 	var chk_NewTorrents = $("input#chkNewTorrents").is(':checked');
@@ -18,6 +17,7 @@ function saveOptions() {
 	var chk_TorrentzEu = $("input#chkTorrentzEu").is(':checked');
 	var chk_FilesTube = $("input#chkFilesTube").is(':checked');
 	var chk_OZNzb = $("input#chkOZNzb").is(':checked');
+	var chk_Popcorn = $("input#chkPopcorn").is(':checked');
 
     chrome.storage.sync.set({
         prefs: {
@@ -28,7 +28,6 @@ function saveOptions() {
 			chk_Binsearch: chk_Binsearch,
 			chk_NzbFinder: chk_NzbFinder,
 			chk_OMGWTFNZBz: chk_OMGWTFNZBz,
-			chk_NewzB: chk_NewzB,
 			chk_NzbSu: chk_NzbSu,
 			chk_BTDigg: chk_BTDigg,
 			chk_NewTorrents: chk_NewTorrents,
@@ -39,7 +38,8 @@ function saveOptions() {
 			chk_Fenopy: chk_Fenopy,
 			chk_TorrentzEu: chk_TorrentzEu,
 			chk_FilesTube: chk_FilesTube,
-			chk_OZNzb: chk_OZNzb
+			chk_OZNzb: chk_OZNzb,
+			chk_Popcorn: chk_Popcorn
         }
     });
 
@@ -60,7 +60,6 @@ function loadOptions() {
 			chk_Binsearch: false,
 			chk_NzbFinder: false,
 			chk_OMGWTFNZBz: false,
-			chk_NewzB: false,
 			chk_NzbSu: false,
 			chk_BTDigg: false,
 			chk_NewTorrents: false,
@@ -71,7 +70,8 @@ function loadOptions() {
 			chk_Fenopy: false,
 			chk_TorrentzEu: false,
 			chk_FilesTube: false,
-			chk_OZNzb: false
+			chk_OZNzb: false,
+			chk_Popcorn: false
         }
     },
     
@@ -83,7 +83,6 @@ function loadOptions() {
 		$("input#chkBinsearch").prop('checked',storage.prefs.chk_Binsearch);
 		$("input#chkNzbFinder").prop('checked',storage.prefs.chk_NzbFinder);
 		$("input#chkOMGWTFNZBz").prop('checked',storage.prefs.chk_OMGWTFNZBz);
-		$("input#chkNewzB").prop('checked',storage.prefs.chk_NewzB);
 		$("input#chkNzbSu").prop('checked',storage.prefs.chk_NzbSu);
 		$("input#chkBTDigg").prop('checked',storage.prefs.chk_BTDigg);
 		$("input#chkNewTorrents").prop('checked',storage.prefs.chk_NewTorrents);
@@ -95,6 +94,7 @@ function loadOptions() {
 		$("input#chkTorrentzEu").prop('checked',storage.prefs.chk_TorrentzEu);
 		$("input#chkFilesTube").prop('checked',storage.prefs.chk_FilesTube);
 		$("input#chkOZNzb").prop('checked',storage.prefs.chk_OZNzb);
+		$("input#chkPopcorn").prop('checked',storage.prefs.chk_Popcorn);
 	});
 }
 

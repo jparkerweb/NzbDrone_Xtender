@@ -1,4 +1,4 @@
-var versionNumber = "Xtender v3.0.0";
+var versionNumber = "Xtender v3.0.1";
 var thisURL = window.location.pathname;
 	thisURL = thisURL.toLowerCase();
 var thisTitle = document.title;
@@ -27,6 +27,7 @@ window.onload = function() {
 			$("body").append("<input type='hidden' id='chk_TorrentzEu' value='" + items.prefs.chk_TorrentzEu + "'>");
 			$("body").append("<input type='hidden' id='chk_FilesTube' value='" + items.prefs.chk_FilesTube + "'>");
 			$("body").append("<input type='hidden' id='chk_OZNzb' value='" + items.prefs.chk_OZNzb + "'>");
+			$("body").append("<input type='hidden' id='chk_Popcorn' value='" + items.prefs.chk_Popcorn + "'>");
 		});
 	}
 };
@@ -37,7 +38,7 @@ var updateNavbarAndFooter = setInterval(function() {
 	if ($('.navbar-nzbdrone ul.navbar-nav:not(.navbar-right)').length) {
 		// --- Set Low Voltage Free Text Page Link --- //
 		var iconsPath = chrome.extension.getURL("icons");			
-		$(".navbar-nzbdrone ul.navbar-nav:not(.navbar-right)").append("<li id='li-low-voltage'><a target='_blank' style='margin:0; padding:3px;' href='http://dl.dropbox.com/u/2569529/webpages/low_voltage_generator/lowvoltagegenerator.html'><img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' /><br>Low Voltage</a></li>");
+		$(".navbar-nzbdrone ul.navbar-nav:not(.navbar-right)").append("<li id='li-low-voltage'><a target='_blank' style='margin:0; padding:3px;' href='http://jparkerweb.github.io/Low_Voltage_Generator/'><img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' /><br>Low Voltage</a></li>");
 		// --- Set Foot version number --- //
 		$("div#footer-region").append("<span style='padding-left:15px;'> " + versionNumber + " </span>");
 		// call add click events to navbar li items
@@ -141,6 +142,7 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 
 		var xSearchString = xSeries + ' ' + xEpisode;
 		var xSearchStringPlus = xSearchString.replace(/ /g, '+');
+		var xSeriesStringPlus = xSeries.replace(/ /g, '+');
 
 		//Usenet Link
 		var DogNZB,
@@ -167,7 +169,8 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 			NzbSu = " <a target='_blank' class='btn btn-mini' href='https://nzb.su/search/" + xSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/nzbsu.png' \/><\/a> ";
 
 		//Bit Torrent Links
-		var BTDigg,
+		var Popcorn,
+			BTDigg,
 			NewTorrents,
 			KickAssTorrents,
 			ThePirateBay,
@@ -175,6 +178,7 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 			h33t,
 			Fenopy,
 			TorrentzEu;
+			Popcorn = " <a target='_blank' class='btn btn-mini' href='http://popcorn.cab/search?type=tv&query=" + xSeriesStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/popcorn.png' /></a> ";
 			BTDigg = " <a target='_blank' class='btn btn-mini' href='https://btdigg.org/search?q=" + xSearchStringPlus + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/btdigg.png' /></a> ";
 			NewTorrents = " <a target='_blank' class='btn btn-mini' href='http://www.newtorrents.info/search/" + xSearchString + "'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/newtorrents.png' /></a> ";
 			KickAssTorrents = " <a target='_blank' class='btn btn-mini' href='http://kickass.to/usearch/" + xSearchString + "/'> <img width='16px' height='16px' border='0' align='absmiddle' src='" + iconsPath + "/kickasstorrents.png' /></a> ";		
@@ -199,6 +203,7 @@ var observerModal = new MutationObserver(function(mutations, observer) {
 			if($("input#chk_OMGWTFNZBz").val() !== "true") ShowSearchLinks = ShowSearchLinks + OMGWTFNZBz;
 			if($("input#chk_NewzB").val() !== "true") ShowSearchLinks = ShowSearchLinks + NewzB;
 			if($("input#chk_NzbSu").val() !== "true") ShowSearchLinks = ShowSearchLinks + NzbSu;
+			if($("input#chk_Popcorn").val() !== "true") ShowSearchLinks = ShowSearchLinks + Popcorn;
 			if($("input#chk_BTDigg").val() !== "true") ShowSearchLinks = ShowSearchLinks + BTDigg;
 			if($("input#chk_NewTorrents").val() !== "true") ShowSearchLinks = ShowSearchLinks + NewTorrents;
 			if($("input#chk_KickAssTorrents").val() !== "true") ShowSearchLinks = ShowSearchLinks + KickAssTorrents;
