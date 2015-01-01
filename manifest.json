@@ -1,6 +1,6 @@
 {
   "name": "NZBDrone Xtender",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "manifest_version": 2,
   "description": "NZBDrone Xtender adds links to scene search sites for all of your episodes. Helpful for when NZBDrone can't find it on its own.",
   "icons": { "16": "icon16.png",
@@ -17,6 +17,7 @@
     "storage"
   ],
   "web_accessible_resources": [
+    "jquery-1.10.2.min.js",
     "jquery-1.10.2.min.map",
     "icons/github.png",
     "icons/icon16.png",
@@ -31,10 +32,8 @@
     "icons/excursionscript.png",
     "icons/extratorrent.png",
     "icons/eztv.png",
-    "icons/filestube.png",
     "icons/findnzb.png",
     "icons/h33t.png",
-    "icons/fenopy.png",
     "icons/isohunt.png",
     "icons/kickasstorrents.png",
     "icons/listing.txt",
