@@ -7,10 +7,12 @@ function saveOptions() {
 	var chk_NzbFinder = $("input#chkNzbFinder").is(':checked');
 	var chk_OMGWTFNZBz = $("input#chkOMGWTFNZBz").is(':checked');
 	var chk_NzbSu = $("input#chkNzbSu").is(':checked');
+	var chk_NZBGeek = $("input#chkNZBGeek").is(':checked');
 	var chk_BTDigg = $("input#chkBTDigg").is(':checked');
 	var chk_NewTorrents = $("input#chkNewTorrents").is(':checked');
 	var chk_KickAssTorrents = $("input#chkKickAssTorrents").is(':checked');
 	var chk_ThePirateBay = $("input#chkThePirateBay").is(':checked');
+	var chk_OldPirateBay = $("input#chkOldPirateBay").is(':checked');
 	var chk_l337x = $("input#chkl337x").is(':checked');
 	var chk_h33t = $("input#chkh33t").is(':checked');
 	var chk_Fenopy = $("input#chkFenopy").is(':checked');
@@ -29,10 +31,12 @@ function saveOptions() {
 			chk_NzbFinder: chk_NzbFinder,
 			chk_OMGWTFNZBz: chk_OMGWTFNZBz,
 			chk_NzbSu: chk_NzbSu,
+			chk_NZBGeek: chk_NZBGeek,
 			chk_BTDigg: chk_BTDigg,
 			chk_NewTorrents: chk_NewTorrents,
 			chk_KickAssTorrents: chk_KickAssTorrents,
 			chk_ThePirateBay: chk_ThePirateBay,
+			chk_OldPirateBay: chk_OldPirateBay,
 			chk_l337x: chk_l337x,
 			chk_h33t: chk_h33t,
 			chk_Fenopy: chk_Fenopy,
@@ -61,10 +65,12 @@ function loadOptions() {
 			chk_NzbFinder: false,
 			chk_OMGWTFNZBz: false,
 			chk_NzbSu: false,
+			chk_NZBGeek: false,
 			chk_BTDigg: false,
 			chk_NewTorrents: false,
 			chk_KickAssTorrents: false,
 			chk_ThePirateBay: false,
+			chk_OldPirateBay: false,
 			chk_l337x: false,
 			chk_h33t: false,
 			chk_Fenopy: false,
@@ -74,7 +80,7 @@ function loadOptions() {
 			chk_Popcorn: false
         }
     },
-    
+
 	function(storage) {
 		$("input#chkDogNZB").prop('checked',storage.prefs.chk_DogNZB);
 		$("input#chkNZBsDotOrg").prop('checked',storage.prefs.chk_NZBsDotOrg);
@@ -84,10 +90,12 @@ function loadOptions() {
 		$("input#chkNzbFinder").prop('checked',storage.prefs.chk_NzbFinder);
 		$("input#chkOMGWTFNZBz").prop('checked',storage.prefs.chk_OMGWTFNZBz);
 		$("input#chkNzbSu").prop('checked',storage.prefs.chk_NzbSu);
+		$("input#chkNZBGeek").prop('checked',storage.prefs.chk_NZBGeek);
 		$("input#chkBTDigg").prop('checked',storage.prefs.chk_BTDigg);
 		$("input#chkNewTorrents").prop('checked',storage.prefs.chk_NewTorrents);
 		$("input#chkKickAssTorrents").prop('checked',storage.prefs.chk_KickAssTorrents);
 		$("input#chkThePirateBay").prop('checked',storage.prefs.chk_ThePirateBay);
+		$("input#chkOldPirateBay").prop('checked',storage.prefs.chk_OldPirateBay);
 		$("input#chkl337x").prop('checked',storage.prefs.chk_l337x);
 		$("input#chkh33t").prop('checked',storage.prefs.chk_h33t);
 		$("input#chkFenopy").prop('checked',storage.prefs.chk_Fenopy);
