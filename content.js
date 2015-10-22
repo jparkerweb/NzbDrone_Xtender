@@ -1,4 +1,4 @@
-var versionNumber = "Xtender v3.0.3";
+var versionNumber = "Xtender v3.0.4";
 var thisURL = window.location.pathname;
 	thisURL = thisURL.toLowerCase();
 var thisTitle = document.title;
@@ -37,12 +37,16 @@ var updateNavbarAndFooter = setInterval(function() {
 	if ($('.navbar-nzbdrone ul.navbar-nav:not(.navbar-right)').length) {
 		// --- Set Low Voltage Free Text Page Link --- //
 		var iconsPath = chrome.extension.getURL("icons");
-		$(".navbar-nzbdrone ul.navbar-nav:not(.navbar-right)").append("<li id='li-low-voltage'><a target='_blank' style='margin:0; padding:3px;' href='http://jparkerweb.github.io/Low_Voltage_Generator/'><img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' /><br>Low Voltage</a></li>");
+		$(".navbar-nzbdrone ul.navbar-nav:not(.navbar-right)").append("<li id='li-low-voltage'><a id='lowVoltageLink' target='lowvoltage' rel='external' style='margin:0; padding:3px;' href='//jparkerweb.github.io/Low_Voltage_Generator/'><img width='48px' height='48px' border='0' align='absmiddle' src='" + iconsPath + "/lowvoltage.png' /><br>Low Voltage</a></li>");
 		// --- Set Foot version number --- //
 		$("div#footer-region").append("<span style='padding-left:15px;'> " + versionNumber + " </span>");
 		// call add click events to navbar li items
 		addClickEventsToMainNavbarItems();
 		clearInterval(updateNavbarAndFooter);
+
+		$('body').on('click', '#lowVoltageLink', function() {
+			window.open($(this).attr('href'));
+		});
 	}
 	intervalsUpdateNavbarAndFooter = intervalsUpdateNavbarAndFooter + 1;
 	if (intervalsUpdateNavbarAndFooter > 20) { clearInterval(updateNavbarAndFooter); }
